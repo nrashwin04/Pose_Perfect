@@ -1,25 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
+  final user = FirebaseAuth.instance.currentUser!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff95D5B2),  // Same background as the rest of the app
-      appBar: AppBar(
-        title: const Text(
-          'Profile',
-          style: TextStyle(
-            color: Color(0xFF1B4332),
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Poppins',
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: const Color(0xff95D5B2),
-        elevation: 0.0,
-        iconTheme: const IconThemeData(color: Color(0xFF081C15)),
-      ),
+      backgroundColor: const Color(0xff95D5B2), // Same background as the rest of the app
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -29,7 +17,7 @@ class ProfilePage extends StatelessWidget {
             const Center(
               child: CircleAvatar(
                 radius: 60,
-                backgroundImage: AssetImage('assets/profile_pic.png'), // Replace with actual profile image
+                backgroundImage: AssetImage('assets/profile_placeholder.png'), // Replace with actual profile image
               ),
             ),
             const SizedBox(height: 20.0),
@@ -37,7 +25,7 @@ class ProfilePage extends StatelessWidget {
             // Username Section
             const Center(
               child: Text(
-                'Group 13',  // Example username
+                'Group 13', // Example username
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -47,10 +35,10 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8.0),
-            const Center(
+            Center(
               child: Text(
-                'yogajohn@example.com',  // Example email
-                style: TextStyle(
+                'Email: ' + user.email!, // Example email
+                style: const TextStyle(
                   fontSize: 16,
                   color: Color(0xFF1B4332),
                   fontFamily: 'Poppins',
@@ -59,14 +47,12 @@ class ProfilePage extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
 
-            // Completed Sessions Section
-            
-
-            // Edit Profile Button
+            // Sign Out Button
             Center(
               child: ElevatedButton(
-                onPressed: () {
-                  // Logic for editing profile goes here
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut(); // Sign out the user
+                  Navigator.pushReplacementNamed(context, '/login'); // Navigate to the login page
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF081C15), // Button color

@@ -79,9 +79,9 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
               children: [
                 _buildValueCard('Weight', '${_weight.toStringAsFixed(1)} kg',
                     () {
-                  setState(() => _weight -= 1);
+                  setState(() => _weight -= 0.5);
                 }, () {
-                  setState(() => _weight += 1);
+                  setState(() => _weight += 0.5);
                 }),
                 _buildValueCard('Age', '$_age', () {
                   setState(() => _age -= 1);

@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yoga_two/homepage/home_page.dart';
+import 'package:yoga_two/loginpage/registration_page.dart';
 import 'login_button.dart';
-import 'failure_dialog.dart';
+import 'login_failure_dialog.dart';
 
 class YogaLoginPage extends StatefulWidget {
   const YogaLoginPage({super.key});
@@ -11,23 +13,38 @@ class YogaLoginPage extends StatefulWidget {
 }
 
 class _YogaLoginPageState extends State<YogaLoginPage> {
-  final TextEditingController _userIdController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
-  void _login() {
-    String userId = _userIdController.text;
-    String password = _passwordController.text;
+  void _login() async {
 
-    // Simple authentication check
-    if (userId == 'admin' && password == 'admin') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) =>  HomePage()),
+  try {
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailController.text,
+      password: passwordController.text,
+    );
+    
+    // Check if login is successful
+    if (userCredential.user != null) {
+      //logged in successfully message
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Logged in Successfully...'),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.green,
+        ),
       );
+      // Navigate to the HomePage or AuthPage
+      Navigator.pushReplacementNamed(context, '/home');
     } else {
+      // Show failure message if login fails
       _showFailureMessage();
     }
+  } catch (e) {
+    // Handle error (e.g., wrong credentials)
+    _showFailureMessage();
   }
+}
 
   void _showFailureMessage() {
     showDialog(
@@ -53,7 +70,7 @@ class _YogaLoginPageState extends State<YogaLoginPage> {
               height: 100,
             ),
             const Text(
-              'Pose Perfect',
+              'LOGIN',
               style: TextStyle(
                 fontSize: 50,
                 fontWeight: FontWeight.bold,
@@ -64,7 +81,7 @@ class _YogaLoginPageState extends State<YogaLoginPage> {
             const SizedBox(height: 40),
             // Email field
             TextField(
-              controller: _userIdController,
+              controller: emailController,
               decoration: InputDecoration(
                 hintText: 'Enter email id',
                 filled: true,
@@ -78,7 +95,7 @@ class _YogaLoginPageState extends State<YogaLoginPage> {
             const SizedBox(height: 20),
             // Password field
             TextField(
-              controller: _passwordController,
+              controller: passwordController,
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'Enter password',
@@ -103,9 +120,16 @@ class _YogaLoginPageState extends State<YogaLoginPage> {
                   style: TextStyle(color: Color(0xff1B4332), fontSize: 16),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => RegistrationPage(),
+      ),
+    );
+  },
                   child: const Text(
-                    'Create Account',
+                    'Register Now',
                     style: TextStyle(color: Color(0xff2D6A4F), fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
                   ),
                 ),

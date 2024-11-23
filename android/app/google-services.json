@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1075930700335",
+    "project_id": "poseperfect-c3be7",
+    "storage_bucket": "poseperfect-c3be7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075930700335:android:e55537c7c2486afdb944da",
+        "android_client_info": {
+          "package_name": "com.example.yoga_two"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3p-rEB7r2Ir1ByEM6-mh1DgHYsiu-Wuc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

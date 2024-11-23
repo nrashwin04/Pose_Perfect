@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_two/loginpage/auth_page.dart';
+import 'package:yoga_two/profilepage/profile_page.dart';
 import 'loginpage/login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
+await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const YogaLoginApp());
 }
 
@@ -19,7 +26,9 @@ class YogaLoginApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const YogaLoginPage(),
-        '/home': (context) => YogaLoginPage(),
+        '/home': (context) => AuthPage(),
+        '/login': (context) => YogaLoginPage(), // Login page route
+        '/profile': (context) => ProfilePage(), // Profile page route
       },
     );
   }

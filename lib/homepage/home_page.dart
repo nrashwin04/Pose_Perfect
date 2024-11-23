@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     HomeContent(),
-    ExerciseHomePage(),  // Pass a title here
+    YogaStudio(),  // Pass a title here
     BMICalculatorPage(),
     ProfilePage(),
   ];

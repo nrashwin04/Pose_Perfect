@@ -38,6 +38,8 @@ dependencies:
   carousel_slider: ^5.0.0
   google_fonts: ^6.2.1
   google_nav_bar: ^5.0.7
+  firebase_auth: ^5.3.3
+  firebase_core: ^3.8.0
 
 
 dev_dependencies:
@@ -83,6 +85,7 @@ flutter:
     - assets/yoga_pose15.jpeg
 
     #profile and logo
+    - assets/profile_placeholder.png
     - assets/profile_pic.png
     - assets/poseperfect.png
 
@@ -102,6 +105,25 @@ flutter:
     - assets/yoga.jpg
     - assets/tips.jpg
 
+    #beginner yoga pose images
+    - assets/beginner/beg_dog.jpg
+    - assets/beginner/beg_mountain.jpg
+    - assets/beginner/beg_tree.jpg
+    - assets/beginner/beg_cobra.jpg
+    - assets/beginner/beg_warrior1.jpg
+    - assets/beginner/beg_child.jpg
+
+    #beginner pose gifs
+    - assets/beginner/gifs/child_pose.gif
+    - assets/beginner/gifs/cobra_pose.gif
+
+
+
+    #advanced yoga pose images
+    - assets/tips.jpg
+
+    #intermediate yoga pose images
+    - assets/tips.jpg
 
 
 
