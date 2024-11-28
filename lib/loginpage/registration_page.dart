@@ -78,7 +78,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             children: [
               const SizedBox(height: 150),
               Image.asset(
-                'assets/poseperfect.png',
+                'assets/login_logo.png',
                 width: 100,
                 height: 100,
               ),

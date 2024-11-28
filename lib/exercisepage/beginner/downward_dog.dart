@@ -25,7 +25,15 @@ class DownwardDogPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/beginner/beg_dog.jpg"), 
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), // Rounds the corners of the image
+                child: Image.asset(
+                  "assets/beginner/gifs/downward_dog.gif", // Path to your image asset
+                  width: double.infinity, // Ensures the image spans the available width
+                  height: 400, // Adjust the height to make the image larger
+                  fit: BoxFit.cover, // Ensures the image covers the area without distortion
+                ),
+              ),
               SizedBox(height: 20),
               Text(
                 "Downward Dog Pose",

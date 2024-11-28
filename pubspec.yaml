@@ -40,6 +40,9 @@ dependencies:
   google_nav_bar: ^5.0.7
   firebase_auth: ^5.3.3
   firebase_core: ^3.8.0
+  flutter_native_splash: ^2.4.3
+  animated_splash_screen: ^1.3.0
+  camera: ^0.11.0+2
 
 
 dev_dependencies:
@@ -68,6 +71,7 @@ flutter:
   assets:
 
     #carousel images
+    - assets/finalicon.png
     - assets/yoga_pose1.jpeg
     - assets/yoga_pose2.jpeg
     - assets/yoga_pose3.jpeg
@@ -88,6 +92,13 @@ flutter:
     - assets/profile_placeholder.png
     - assets/profile_pic.png
     - assets/poseperfect.png
+    - assets/funky_icon.png
+    - assets/app_logo.png
+    - assets/login_logo.png
+
+    #splash screen
+    - assets/splash_bg.jpg
+    - assets/splash_branding.png
 
     #soundscape background
     - assets/sound_forest.jpg
@@ -116,14 +127,31 @@ flutter:
     #beginner pose gifs
     - assets/beginner/gifs/child_pose.gif
     - assets/beginner/gifs/cobra_pose.gif
-
-
+    - assets/beginner/gifs/mountain_pose.gif
+    - assets/beginner/gifs/downward_dog.gif
+    - assets/beginner/gifs/tree_pose.gif
+    - assets/beginner/gifs/warrior1_pose.gif
 
     #advanced yoga pose images
-    - assets/tips.jpg
+    - assets/advanced/forearm_stand.png
+    - assets/advanced/full_wheel_pose.png
+    - assets/advanced/head_stand.png
+    - assets/advanced/peacock_pose.png
+    - assets/advanced/scorpion_pose.png
+    - assets/advanced/side_crow.png
+
+    #advanced pose gifs
+    
 
     #intermediate yoga pose images
-    - assets/tips.jpg
+    - assets/intermediate/camel_pose.png
+    - assets/intermediate/crow_pose.png
+    - assets/intermediate/eagle_pose.png
+    - assets/intermediate/king_dancer_pose.png
+    - assets/intermediate/revolved_triangle_pose.png
+    - assets/intermediate/warrior3_pose.png
+
+    #intermediate yoga pose gifs
 
 
 
@@ -154,6 +182,25 @@ flutter:
       fonts:
         - asset: fonts/Montserrat.ttf
           weight: 700
+    - family: League
+      fonts:
+        - asset: fonts/LeagueSpartan-Black.ttf
+          weight: 700
+        - asset: fonts/LeagueSpartan-Bold.ttf
+          weight: 700         
+        - asset: fonts/LeagueSpartan-ExtraBold.ttf
+          weight: 700
   
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+  #flutter_native_splash
+flutter_native_splash:
+  color: "#ffffff" # Background color of the splash screen
+  image: assets/splash_branding.png # Path to your splash screen image
+  android: true
+  ios: true
+  web: false
+
+
+

@@ -1,4 +1,6 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:yoga_two/homepage/home_page.dart';
 import 'package:yoga_two/loginpage/auth_page.dart';
 import 'package:yoga_two/profilepage/profile_page.dart';
 import 'loginpage/login_page.dart';
@@ -25,8 +27,8 @@ class YogaLoginApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const YogaLoginPage(),
-        '/home': (context) => AuthPage(),
+        '/': (context) => HomePage(),
+        '/home': (context) => HomePage(),
         '/login': (context) => YogaLoginPage(), // Login page route
         '/profile': (context) => ProfilePage(), // Profile page route
       },

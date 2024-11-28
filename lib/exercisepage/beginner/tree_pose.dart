@@ -25,7 +25,15 @@ class TreePosePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/beginner/beg_tree.jpg"), // Ensure this asset exists
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), // Rounding the corners of the image
+                child: Image.asset(
+                  "assets/beginner/gifs/tree_pose.gif", // Path to your image asset
+                  width: double.infinity, // Make the image span the width of the screen
+                  height: 400, // Increased height to make the image larger
+                  fit: BoxFit.cover, // Ensure the image covers the space without distortion
+                ),
+              ),
               SizedBox(height: 20),
               Text(
                 "Tree Pose",

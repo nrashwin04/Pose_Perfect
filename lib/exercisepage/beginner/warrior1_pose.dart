@@ -25,7 +25,15 @@ class Warrior1PosePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/beginner/beg_warrior1.jpg"), // Ensure this asset exists
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), // Rounding the corners of the image
+                child: Image.asset(
+                  "assets/beginner/gifs/warrior1_pose.gif", // Path to your image asset
+                  width: double.infinity, // Make the image span the width of the screen
+                  height: 400, // Increased height to make the image larger
+                  fit: BoxFit.cover, // Ensures the image covers the area without distortion
+                ),
+              ),
               SizedBox(height: 20),
               Text(
                 "Warrior I Pose",

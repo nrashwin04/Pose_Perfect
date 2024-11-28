@@ -25,7 +25,10 @@ class MountainPosePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/beginner/beg_mountain.jpg"), // Ensure this asset exists
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), // Adjust the radius to make corners rounder or sharper
+                child: Image.asset("assets/beginner/gifs/mountain_pose.gif"), // Ensure this asset exists
+              ),
               SizedBox(height: 20),
               Text(
                 "Mountain Pose",

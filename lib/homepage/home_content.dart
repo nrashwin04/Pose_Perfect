@@ -6,7 +6,7 @@ import 'sections/quick_recipe_section.dart';
 
 class HomeContent extends StatelessWidget {
   final List<String> yogaImages = [
-    'assets/yoga_pose1.jpeg',
+    'assets/finalicon.png',
     'assets/yoga_pose2.jpeg',
     'assets/yoga_pose3.jpeg',
     'assets/yoga_pose4.jpeg',

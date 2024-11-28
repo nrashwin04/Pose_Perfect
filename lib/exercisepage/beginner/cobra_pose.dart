@@ -25,7 +25,15 @@ class CobraPosePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/beginner/gifs/cobra_pose.gif"), 
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), // Rounded corners
+                child: Image.asset(
+                  "assets/beginner/gifs/cobra_pose.gif",
+                  width: double.infinity,
+                  height: 400,
+                  fit: BoxFit.cover,
+                ),
+              ),
               SizedBox(height: 20),
               Text(
                 "Cobra Pose",
@@ -61,8 +69,55 @@ class CobraPosePage extends StatelessWidget {
                 "- Opens the chest and shoulders.",
                 style: TextStyle(fontSize: 16),
               ),
+              SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PoseDetectionPage()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF1B4332), // Button color
+                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+                child: Text(
+                  "Try Now",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class PoseDetectionPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Pose Detection',
+          style: TextStyle(color: Color(0xFF1B4332), fontFamily: 'Poppins'),
+        ),
+        backgroundColor: Color(0xff95D5B2),
+        iconTheme: const IconThemeData(color: Color(0xFF1B4332)),
+      ),
+      body: Center(
+        child: Text(
+          "Camera Integration Coming Soon...",
+          style: TextStyle(fontSize: 18, fontFamily: 'Poppins'),
         ),
       ),
     );

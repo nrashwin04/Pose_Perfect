@@ -7,7 +7,7 @@ class ChildPosePage extends StatelessWidget {
       backgroundColor: Color(0xff95D5B2),
       appBar: AppBar(
         title: const Text(
-          'Demonstrationas',
+          'Demonstrations',
           style: TextStyle(
             color: Color(0xFF1B4332),
             fontSize: 30,
@@ -25,7 +25,15 @@ class ChildPosePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/beginner/gifs/child_pose.gif"), // Ensure this asset exists in your project
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20.0), // Round the corners of the image
+                child: Image.asset(
+                  "assets/beginner/gifs/child_pose.gif", // Ensure the path to your asset is correct
+                  width: double.infinity,  // The GIF will now stretch to fill the available width
+                  height: 400, // Adjust the height to make the GIF larger
+                  fit: BoxFit.cover, // Optional: Ensures the GIF covers the space without distortion
+                ),
+              ),
               SizedBox(height: 20),
               Text(
                 "Child's Pose",

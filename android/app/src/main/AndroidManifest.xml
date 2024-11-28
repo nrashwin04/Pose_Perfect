@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="Pose Perfect"
+        android:label="Zenica."
         android:name="${applicationName}"
-        android:icon="@mipmap/poseperfect">
+        android:icon="@mipmap/final_icon_promise">
         <activity
             android:name=".MainActivity"
             android:exported="true"

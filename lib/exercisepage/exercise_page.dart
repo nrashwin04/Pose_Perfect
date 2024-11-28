@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_two/exercisepage/advanced/forearm_stand.dart';
+import 'package:yoga_two/exercisepage/advanced/full_wheel_pose.dart';
+import 'package:yoga_two/exercisepage/advanced/head_stand.dart';
+import 'package:yoga_two/exercisepage/advanced/peacock_pose.dart';
+import 'package:yoga_two/exercisepage/advanced/scorpion_pose.dart';
+import 'package:yoga_two/exercisepage/advanced/side_crow_pose.dart';
 import 'package:yoga_two/exercisepage/beginner/cobra_pose.dart';
 import 'package:yoga_two/exercisepage/beginner/downward_dog.dart'; // Import pose-specific files
 import 'package:yoga_two/exercisepage/beginner/child_pose.dart';
 import 'package:yoga_two/exercisepage/beginner/mountain_pose.dart';
 import 'package:yoga_two/exercisepage/beginner/tree_pose.dart';
-import 'package:yoga_two/exercisepage/beginner/warrior1_pose.dart'; // Add similar imports for other poses
+import 'package:yoga_two/exercisepage/beginner/warrior1_pose.dart';
+import 'package:yoga_two/exercisepage/intermediate/camel_pose.dart';
+import 'package:yoga_two/exercisepage/intermediate/crow_pose.dart';
+import 'package:yoga_two/exercisepage/intermediate/eagle_pose.dart';
+import 'package:yoga_two/exercisepage/intermediate/king_dancer_pose.dart';
+import 'package:yoga_two/exercisepage/intermediate/revolved_triangle.dart';
+import 'package:yoga_two/exercisepage/intermediate/warrior3_pose.dart'; // Add similar imports for other poses
 
 void main() {
   runApp(MyApp());
@@ -34,21 +46,21 @@ class YogaStudio extends StatelessWidget {
   ];
 
   final List<Map<String, dynamic>> intermediatePoses = [
-    {"name": "Warrior III", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Crow Pose", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Eagle Pose", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Camel Pose", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Revolved Triangle", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "King Dancer Pose", "image": "assets/beginner/yoga.jpg", "page": null},
+    {"name": "Warrior III", "image": "assets/intermediate/warrior3_pose.png", "page": Warrior3PosePage()},
+    {"name": "Crow Pose", "image": "assets/intermediate/crow_pose.png", "page": CrowPosePage()},
+    {"name": "Eagle Pose", "image": "assets/intermediate/eagle_pose.png", "page": EaglePosePage()},
+    {"name": "Camel Pose", "image": "assets/intermediate/camel_pose.png", "page": CamelPosePage()},
+    {"name": "Revolved Triangle", "image": "assets/intermediate/revolved_triangle_pose.png", "page": RevolvedTrianglePosePage()},
+    {"name": "King Dancer Pose", "image": "assets/intermediate/king_dancer_pose.png", "page": KingDancerPosePage()},
   ];
 
   final List<Map<String, dynamic>> advancedPoses = [
-    {"name": "Headstand", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Peacock Pose", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Scorpions Pose", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Forearm Stand", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Side Crow Pose", "image": "assets/beginner/yoga.jpg", "page": null},
-    {"name": "Full Wheel Pose", "image": "assets/beginner/yoga.jpg", "page": null},
+    {"name": "Headstand", "image": "assets/advanced/head_stand.png", "page": HeadStandPage()},
+    {"name": "Peacock Pose", "image": "assets/advanced/peacock_pose.png", "page": PeacockPosePage()},
+    {"name": "Scorpions Pose", "image": "assets/advanced/scorpion_pose.png", "page": ScorpionPosePage()},
+    {"name": "Forearm Stand", "image": "assets/advanced/forearm_stand.png", "page": ForearmStandPage()},
+    {"name": "Side Crow Pose", "image": "assets/advanced/side_crow.png", "page": SideCrowPosePage()},
+    {"name": "Full Wheel Pose", "image": "assets/advanced/full_wheel_pose.png", "page": FullWheelPosePage()},
   ];
 
   @override

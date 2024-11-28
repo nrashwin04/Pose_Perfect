@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: const Color(0xff95D5B2),
       appBar: AppBar(
         title: const Text(
-          'Pose Perfect',
+          'zenica .',
           style: TextStyle(
             color: Color(0xFF1B4332),
             fontSize: 40,
