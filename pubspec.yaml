@@ -43,6 +43,7 @@ dependencies:
   flutter_native_splash: ^2.4.3
   animated_splash_screen: ^1.3.0
   camera: ^0.11.0+2
+  audioplayers: ^6.1.0
 
 
 dev_dependencies:
@@ -104,6 +105,11 @@ flutter:
     - assets/sound_forest.jpg
     - assets/sound_ocean.jpg
     - assets/sound_campfire.jpg
+
+    #soundscape audio
+    - assets/soundscape/campfire.mp3
+    - assets/soundscape/ocean.mp3
+    - assets/soundscape/rainforest.mp3
 
     #recipe background
     - assets/smoothie.jpg
