@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_two/camera_test.dart';
 
 class MountainPosePage extends StatelessWidget {
   @override
@@ -65,6 +66,31 @@ class MountainPosePage extends StatelessWidget {
                 "- Reduces stress and promotes calmness.",
                 style: TextStyle(fontSize: 16),
               ),
+            SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CameraApp()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF1B4332), // Button color
+                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+                child: Text(
+                  "Try Now",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -72,3 +98,4 @@ class MountainPosePage extends StatelessWidget {
     );
   }
 }
+

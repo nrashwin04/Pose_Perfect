@@ -72,7 +72,7 @@ class YogaStudio extends StatelessWidget {
           'Choose Difficulty',
           style: TextStyle(
             color: Color(0xFF1B4332),
-            fontSize: 30,
+            fontSize: 24,
             fontWeight: FontWeight.bold,
             fontFamily: 'Poppins',
           ),
@@ -105,7 +105,7 @@ class YogaStudio extends StatelessWidget {
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
           ),
           Container(
-            height: 180,
+            height: 165,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: poses.length,
@@ -132,7 +132,7 @@ class YogaStudio extends StatelessWidget {
                     child: Card(
                       elevation: 5,
                       child: Container(
-                        width: 180,
+                        width: 170,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           image: DecorationImage(
@@ -151,7 +151,7 @@ class YogaStudio extends StatelessWidget {
                                 Text(
                                   poses[index]["name"]!,
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Poppins',
                                     foreground: Paint()
@@ -165,10 +165,10 @@ class YogaStudio extends StatelessWidget {
                                 Text(
                                   poses[index]["name"]!,
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Poppins',
-                                    color: Colors.white,
+                                    color: Color.fromARGB(255, 255, 255, 255),
                                   ),
                                   textAlign: TextAlign.center,
                                 ),

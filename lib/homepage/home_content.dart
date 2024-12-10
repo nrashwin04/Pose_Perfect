@@ -27,7 +27,7 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 6.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,7 +37,7 @@ class HomeContent extends StatelessWidget {
                 items: yogaImages.map((imagePath) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 4.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       image: DecorationImage(
@@ -48,7 +48,7 @@ class HomeContent extends StatelessWidget {
                   );
                 }).toList(),
                 options: CarouselOptions(
-                  height: 250,
+                  height: 200,
                   autoPlay: true,
                   enlargeCenterPage: true,
                   autoPlayInterval: const Duration(seconds: 3),

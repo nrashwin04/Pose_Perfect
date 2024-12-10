@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_two/camera_test.dart';
+import 'package:yoga_two/pose_detection/pose_detection.dart';
 
 class CobraPosePage extends StatelessWidget {
   @override
@@ -74,7 +76,7 @@ class CobraPosePage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PoseDetectionPage()),
+                    MaterialPageRoute(builder: (context) => CameraApp()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -96,28 +98,6 @@ class CobraPosePage extends StatelessWidget {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class PoseDetectionPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Pose Detection',
-          style: TextStyle(color: Color(0xFF1B4332), fontFamily: 'Poppins'),
-        ),
-        backgroundColor: Color(0xff95D5B2),
-        iconTheme: const IconThemeData(color: Color(0xFF1B4332)),
-      ),
-      body: Center(
-        child: Text(
-          "Camera Integration Coming Soon...",
-          style: TextStyle(fontSize: 18, fontFamily: 'Poppins'),
         ),
       ),
     );

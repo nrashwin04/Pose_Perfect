@@ -2,10 +2,26 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
-  final user = FirebaseAuth.instance.currentUser!;
-
   @override
   Widget build(BuildContext context) {
+    // Check if the user is logged in
+    final user = FirebaseAuth.instance.currentUser;
+    
+    if (user == null) {
+      // If no user is logged in, navigate to the login page
+      return Scaffold(
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, '/login'); // Navigate to the login page
+            },
+            child: const Text('Please login first'),
+          ),
+        ),
+      );
+    }
+
+    // If the user is logged in, show the profile page
     return Scaffold(
       backgroundColor: const Color(0xff95D5B2), // Same background as the rest of the app
       body: Padding(

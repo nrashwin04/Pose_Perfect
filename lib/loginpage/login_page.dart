@@ -65,7 +65,7 @@ class _YogaLoginPageState extends State<YogaLoginPage> {
           children: [
             const SizedBox(height: 40),
             Image.asset(
-              'assets/login_logo.png',
+              'assets/poseperfect.png',
               width: 100,
               height: 100,
             ),
@@ -73,7 +73,6 @@ class _YogaLoginPageState extends State<YogaLoginPage> {
               'LOGIN',
               style: TextStyle(
                 fontSize: 50,
-                letterSpacing: 0.1,
                 fontWeight: FontWeight.bold,
                 color: Color(0xff1B4332),
                 fontFamily: 'Poppins',

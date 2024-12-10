@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_two/camera_test.dart';
 
 class DownwardDogPage extends StatelessWidget {
   @override
@@ -72,6 +73,31 @@ class DownwardDogPage extends StatelessWidget {
                 "- Helps relieve stress and calm the mind.",
                 style: TextStyle(fontSize: 16),
               ),
+            SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CameraApp()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF1B4332), // Button color
+                  padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                ),
+                child: Text(
+                  "Try Now",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -79,3 +105,4 @@ class DownwardDogPage extends StatelessWidget {
     );
   }
 }
+

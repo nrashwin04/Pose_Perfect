@@ -17,7 +17,7 @@ class SoundscapeSection extends StatelessWidget {
             color: Color(0xFF1B4332),
           ),
         ),
-        const SizedBox(height: 12.0),
+        const SizedBox(height: 10.0),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
