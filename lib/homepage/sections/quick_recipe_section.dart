@@ -13,7 +13,7 @@ class QuickRecipeSection extends StatelessWidget {
             fontSize: 22,
             fontWeight: FontWeight.bold,
             fontFamily: 'Poppins',
-            color: Color(0xFF1B4332),
+            color: Color(0xFFd4a373),
           ),
         ),
         const SizedBox(height: 8.0),

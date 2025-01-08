@@ -6,7 +6,6 @@ class BMICalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       home: BMICalculatorPage(),
     );
   }
@@ -37,7 +36,7 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff95D5B2),
+      backgroundColor: Color(0xfffefae0),
       appBar: AppBar(
         title: const Text(
           'BMI Calculator',
@@ -49,7 +48,7 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xff95D5B2),
+        backgroundColor: const Color(0xfffefae0),
         elevation: 0.0,
         iconTheme: const IconThemeData(color: Color(0xFF1B4332)),
       ),
@@ -77,16 +76,12 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildValueCard('Weight', '${_weight.toStringAsFixed(1)} kg',
-                    () {
-                  setState(() => _weight -= 0.25);
-                }, () {
-                  setState(() => _weight += 0.25);
+                _buildEditableValueCard('Weight', _weight.toStringAsFixed(1),
+                    (value) {
+                  setState(() => _weight = double.tryParse(value) ?? _weight);
                 }),
-                _buildValueCard('Age', '$_age', () {
-                  setState(() => _age -= 1);
-                }, () {
-                  setState(() => _age += 1);
+                _buildEditableValueCard('Age', '$_age', (value) {
+                  setState(() => _age = int.tryParse(value) ?? _age);
                 }),
               ],
             ),
@@ -94,7 +89,7 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
             ElevatedButton(
               onPressed: _calculateBMI,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff081C15),
+                backgroundColor: Color(0xff7f5539),
                 padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -102,7 +97,11 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
               ),
               child: Text(
                 'CALCULATE',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Poppins', color: Color(0xffD8F3DC)),
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins',
+                    color: Color(0xffD8F3DC)),
               ),
             ),
             SizedBox(height: 20),
@@ -117,7 +116,7 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
     return GestureDetector(
       onTap: () => onPressed(),
       child: Card(
-        color: isSelected ? Color(0xff2D6A4F) : Color(0xff74C69D),
+        color: isSelected ? Color(0xFFd4a373) : Color(0xFFfaedcd),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         child: Container(
           width: 100,
@@ -125,9 +124,9 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, size: 40, color: Color(0xffD8F3DC)),
+              Icon(icon, size: 40, color: Color(0xffffffff)),
               SizedBox(height: 10),
-              Text(gender, style: TextStyle(color: Color(0xffD8F3DC))),
+              Text(gender, style: TextStyle(color: Color(0xffffffff))),
             ],
           ),
         ),
@@ -135,23 +134,62 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
     );
   }
 
-  Widget _buildSliderCard(
-      String label, String value, double sliderValue, double min, double max, Function(double) onChanged) {
+  Widget _buildSliderCard(String label, String value, double sliderValue,
+      double min, double max, Function(double) onChanged) {
     return Card(
-      color: Color(0xff2D6A4F),
+      color: Color(0xFFd4a373),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(label, style: TextStyle(color: Color(0xffD8F3DC), fontSize: 20,fontWeight: FontWeight.bold,fontFamily: 'Poppins')),
-            Text(value, style: TextStyle(color: Color(0xffB7E4C7), fontSize: 32, fontWeight: FontWeight.bold, fontFamily: 'Monsterrat')),
+            Text(label,
+                style: TextStyle(
+                    color: Color(0xffD8F3DC),
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins')),
+            SizedBox(
+              width: 100,
+              child: TextFormField(
+                initialValue: value,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                style: TextStyle(
+                    color: Color(0xffB7E4C7),
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monsterrat'),
+                onChanged: (inputValue) {
+                  setState(() {
+                    double? parsedValue = double.tryParse(inputValue);
+                    if (parsedValue != null &&
+                        parsedValue >= min &&
+                        parsedValue <= max) {
+                      _height = parsedValue;
+                    }
+                  });
+                },
+                decoration: InputDecoration(
+                  isDense: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0xffB7E4C7)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0xffD8F3DC)),
+                  ),
+                  contentPadding: EdgeInsets.all(5),
+                ),
+              ),
+            ),
             Slider(
               value: sliderValue,
               min: min,
               max: max,
-              activeColor: Color(0xff95D5B2),
+              activeColor: Color(0xfff3d0c3),
               inactiveColor: const Color.fromARGB(255, 44, 63, 45),
               onChanged: onChanged,
             ),
@@ -161,28 +199,47 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
     );
   }
 
-  Widget _buildValueCard(String label, String value, Function onDecrease, Function onIncrease) {
+  Widget _buildEditableValueCard(
+      String label, String value, Function(String) onChanged) {
     return Card(
-      color: Color(0xff40916C),
+      color: Color(0xFFd4a373),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Text(label, style: TextStyle(color: Color(0xffD8F3DC), fontSize: 16,fontWeight: FontWeight.bold,fontFamily: 'Poppins')),
-            Text(value, style: TextStyle(color: Color(0xffB7E4C7), fontSize: 32, fontWeight: FontWeight.bold, fontFamily: 'Monsterrat')),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.remove, color: Color(0xffD8F3DC), size: 30,),
-                  onPressed: () => onDecrease(),
+            Text(label,
+                style: TextStyle(
+                    color: Color(0xffD8F3DC),
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins')),
+            SizedBox(height: 10),
+            SizedBox(
+              width: 80,
+              child: TextFormField(
+                initialValue: value,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                style: TextStyle(
+                    color: Color(0xffB7E4C7),
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Monsterrat'),
+                onChanged: onChanged,
+                decoration: InputDecoration(
+                  isDense: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0xffB7E4C7)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(color: Color(0xffD8F3DC)),
+                  ),
+                  contentPadding: EdgeInsets.all(5),
                 ),
-                IconButton(
-                  icon: Icon(Icons.add, color: Color(0xffD8F3DC), size: 30,),
-                  onPressed: () => onIncrease(),
-                ),
-              ],
+              ),
             ),
           ],
         ),
@@ -205,35 +262,35 @@ class BMIResultPage extends StatelessWidget {
     if (bmi < 18.5) {
       result = 'UNDERWEIGHT';
       message = 'You need to gain some weight.';
-      resultColor = Colors.blue;
+      resultColor = const Color.fromARGB(255, 1, 127, 230);
     } else if (bmi < 24.9) {
       result = 'NORMAL';
       message = 'You have a normal body weight. Good job!';
-      resultColor = Colors.green;
+      resultColor = const Color.fromARGB(255, 12, 88, 14);
     } else if (bmi < 29.9) {
       result = 'OVERWEIGHT';
       message = 'Consider exercising more.';
-      resultColor = Colors.orange;
+      resultColor = const Color.fromARGB(255, 208, 125, 0);
     } else {
       result = 'OBESE';
       message = 'Seek advice from a healthcare provider.';
-      resultColor = Colors.red;
+      resultColor = const Color.fromARGB(255, 247, 16, 0);
     }
 
     return Scaffold(
-      backgroundColor: Color(0xff95D5B2),
+      backgroundColor: Color(0xFFfaedcd),
       appBar: AppBar(
         title: const Text(
           'BMI Calculator',
           style: TextStyle(
-            color: Color(0xFF1B4332),
+            color: Color(0xFFd4a373),
             fontSize: 30,
             fontWeight: FontWeight.bold,
             fontFamily: 'Poppins',
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xff95D5B2),
+        backgroundColor: const Color(0xFFfaedcd),
         elevation: 0.0,
         iconTheme: const IconThemeData(color: Color(0xFF1B4332)),
       ),
@@ -245,29 +302,42 @@ class BMIResultPage extends StatelessWidget {
             children: [
               Text(
                 'Your Result',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xff081C15)),
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFd4a373)),
               ),
               SizedBox(height: 20),
               Card(
-                color: Color(0xff2D6A4F),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                color: Color(0xFFd4a373),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
                       Text(
                         result,
-                        style: TextStyle(color: resultColor, fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Poppins'),
+                        style: TextStyle(
+                            color: resultColor,
+                            fontSize: 30,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Poppins'),
                       ),
                       Text(
                         bmi.toStringAsFixed(1),
-                        style: TextStyle(color: Color(0xffD8F3DC), fontSize: 60, fontWeight: FontWeight.bold, fontFamily: 'Monsterrat'),
+                        style: TextStyle(
+                            color: Color(0xffD8F3DC),
+                            fontSize: 60,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Monsterrat'),
                       ),
                       SizedBox(height: 10),
                       Text(
                         message,
                         textAlign: TextAlign.center,
-                        style: TextStyle(color: Color(0xffD8F3DC), fontSize: 24),
+                        style: TextStyle(
+                            color: Color(0xffD8F3DC), fontSize: 24),
                       ),
                     ],
                   ),
@@ -277,7 +347,7 @@ class BMIResultPage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => Navigator.pop(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff081C15),
+                  backgroundColor: Color(0xff7f5539),
                   padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -285,7 +355,10 @@ class BMIResultPage extends StatelessWidget {
                 ),
                 child: Text(
                   'RE-CALCULATE',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xffD8F3DC)),
+                  style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xffD8F3DC)),
                 ),
               ),
             ],
@@ -295,3 +368,4 @@ class BMIResultPage extends StatelessWidget {
     );
   }
 }
+

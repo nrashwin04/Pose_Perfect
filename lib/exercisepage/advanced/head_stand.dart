@@ -4,7 +4,7 @@ class HeadStandPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff95D5B2),
+      backgroundColor: Color(0xffe7b6b3),
       appBar: AppBar(
         title: const Text(
           'Demonstrations',

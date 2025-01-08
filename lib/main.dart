@@ -27,9 +27,7 @@ class YogaLoginApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
-        '/home': (context) => HomePage(),
-        '/login': (context) => YogaLoginPage(), // Login page route
-        '/profile': (context) => ProfilePage(), // Profile page route
+        '/home': (context) => HomePage()
       },
     );
   }

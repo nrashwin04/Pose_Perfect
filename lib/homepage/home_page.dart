@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     HomeContent(),
-    YogaStudio(),  // Pass a title here
+    YogaStudio(), // Pass a title here
     BMICalculatorPage(),
     ProfilePage(),
   ];
@@ -29,31 +29,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff95D5B2),
+      backgroundColor: const Color(0xfffefae0),
       appBar: AppBar(
         title: const Text(
           'zenica .',
           style: TextStyle(
-            color: Color(0xFF1B4332),
+            color: Color(0xFFd4a373),
             fontSize: 40,
             fontWeight: FontWeight.bold,
             fontFamily: 'Poppins',
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xff95D5B2),
+        backgroundColor: const Color(0xfffefae0),
         elevation: 0.0,
       ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
-        color: const Color(0xff081C15),
+        color: const Color(0xff7f5539),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
           child: GNav(
             gap: 8,
-            color: Color(0xff52B788),
-            activeColor: const Color(0xffD8F3DC),
-            tabBackgroundColor: Color(0xff40916C),
+            color: Color(0xFFfaedcd),
+            activeColor: const Color(0xFFfaedcd),
+            tabBackgroundColor: Color(0xffd4a373),
             padding: const EdgeInsets.all(10),
             onTabChange: _onItemTapped,
             tabs: const [

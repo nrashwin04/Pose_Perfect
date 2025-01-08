@@ -1,49 +1,32 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
-late List<CameraDescription> _cameras;
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  _cameras = await availableCameras();
-  runApp(const CameraApp());
-}
-
-/// CameraApp is the Main Application.
 class CameraApp extends StatefulWidget {
-  /// Default Constructor
-  const CameraApp({super.key});
-
   @override
-  State<CameraApp> createState() => _CameraAppState();
+  _CameraAppState createState() => _CameraAppState();
 }
 
 class _CameraAppState extends State<CameraApp> {
   late CameraController controller;
-  
 
   @override
   void initState() {
     super.initState();
-    controller = CameraController(_cameras[0], ResolutionPreset.max);
-    controller.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    }).catchError((Object e) {
-      if (e is CameraException) {
-        switch (e.code) {
-          case 'CameraAccessDenied':
-            // Handle access errors here.
-            break;
-          default:
-            // Handle other errors here.
-            break;
-        }
-      }
-    });
+    initializeCamera();
+  }
+
+  Future<void> initializeCamera() async {
+    try {
+      final cameras = await availableCameras();
+      controller = CameraController(
+        cameras[0], // First camera
+        ResolutionPreset.medium, // Use medium resolution to avoid issues
+      );
+      await controller.initialize();
+      setState(() {}); // Refresh UI once initialized
+    } catch (e) {
+      debugPrint('Camera initialization error: $e');
+    }
   }
 
   @override
@@ -54,11 +37,16 @@ class _CameraAppState extends State<CameraApp> {
 
   @override
   Widget build(BuildContext context) {
-    if (!controller.value.isInitialized) {
-      return Container();
+    if (controller.value.isInitialized) {
+      return Scaffold(
+        appBar: AppBar(title: Text("Camera")),
+        body: CameraPreview(controller),
+      );
+    } else {
+      return Scaffold(
+        appBar: AppBar(title: Text("Camera")),
+        body: Center(child: CircularProgressIndicator()),
+      );
     }
-    return MaterialApp(
-      home: CameraPreview(controller),
-    );
   }
 }

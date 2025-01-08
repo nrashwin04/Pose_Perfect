@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_two/camera_test.dart';
-import 'package:yoga_two/pose_detection/pose_detection.dart';
 
 class CobraPosePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff95D5B2),
+      backgroundColor: Color(0xfffefae0),
       appBar: AppBar(
         title: const Text(
           'Demonstration',
           style: TextStyle(
-            color: Color(0xFF1B4332),
+            color: Color(0xFFd4a373),
             fontSize: 30,
             fontWeight: FontWeight.bold,
             fontFamily: 'Poppins',
           ),
         ),
         centerTitle: true,
-        backgroundColor: const Color(0xff95D5B2),
+        backgroundColor: const Color(0xfffefae0),
         elevation: 0.0,
         iconTheme: const IconThemeData(color: Color(0xFF1B4332)),
       ),
@@ -80,7 +79,7 @@ class CobraPosePage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xFF1B4332), // Button color
+                  backgroundColor: Color(0xff7f5539), // Button color
                   padding: EdgeInsets.symmetric(horizontal: 32.0, vertical: 12.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),

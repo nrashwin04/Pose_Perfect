@@ -6,7 +6,7 @@ import 'sections/quick_recipe_section.dart';
 
 class HomeContent extends StatelessWidget {
   final List<String> yogaImages = [
-    'assets/finalicon.png',
+    'assets/logowithimage.png',
     'assets/yoga_pose2.jpeg',
     'assets/yoga_pose3.jpeg',
     'assets/yoga_pose4.jpeg',
@@ -48,7 +48,7 @@ class HomeContent extends StatelessWidget {
                   );
                 }).toList(),
                 options: CarouselOptions(
-                  height: 200,
+                  height: 190,
                   autoPlay: true,
                   enlargeCenterPage: true,
                   autoPlayInterval: const Duration(seconds: 3),

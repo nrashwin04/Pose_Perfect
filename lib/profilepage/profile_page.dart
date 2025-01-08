@@ -23,7 +23,7 @@ class ProfilePage extends StatelessWidget {
 
     // If the user is logged in, show the profile page
     return Scaffold(
-      backgroundColor: const Color(0xff95D5B2), // Same background as the rest of the app
+      backgroundColor: const Color(0xfff3d0c3), // Same background as the rest of the app
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

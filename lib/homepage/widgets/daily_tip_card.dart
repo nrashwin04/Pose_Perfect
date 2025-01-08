@@ -12,7 +12,7 @@ class DailyTipCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
-        color: const Color(0xff2D6A4F),
+        color: const Color(0xffd4a373),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -23,7 +23,7 @@ class DailyTipCard extends StatelessWidget {
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Color(0xFFfaedcd),
             ),
           ),
           const SizedBox(height: 8),
@@ -31,7 +31,7 @@ class DailyTipCard extends StatelessWidget {
             description,
             style: const TextStyle(
               fontSize: 16,
-              color: Colors.white70,
+              color: Color(0xFFfaedcd),
             ),
           ),
         ],
