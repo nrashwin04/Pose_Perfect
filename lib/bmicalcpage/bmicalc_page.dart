@@ -52,60 +52,77 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
         elevation: 0.0,
         iconTheme: const IconThemeData(color: Color(0xFF1B4332)),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
               children: [
-                _buildGenderCard('Male', Icons.male, _isMale, () {
-                  setState(() => _isMale = true);
-                }),
-                _buildGenderCard('Female', Icons.female, !_isMale, () {
-                  setState(() => _isMale = false);
-                }),
-              ],
-            ),
-            SizedBox(height: 20),
-            _buildSliderCard('Height', '${_height.toStringAsFixed(1)} cm',
-                _height, 100, 220, (value) {
-              setState(() => _height = value);
-            }),
-            SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                _buildEditableValueCard('Weight', _weight.toStringAsFixed(1),
-                    (value) {
-                  setState(() => _weight = double.tryParse(value) ?? _weight);
-                }),
-                _buildEditableValueCard('Age', '$_age', (value) {
-                  setState(() => _age = int.tryParse(value) ?? _age);
-                }),
-              ],
-            ),
-            Spacer(),
-            ElevatedButton(
-              onPressed: _calculateBMI,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff7f5539),
-                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildGenderCard('Male', Icons.male, _isMale, () {
+                      setState(() => _isMale = true);
+                    }),
+                    _buildGenderCard('Female', Icons.female, !_isMale, () {
+                      setState(() => _isMale = false);
+                    }),
+                  ],
                 ),
-              ),
-              child: Text(
-                'CALCULATE',
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                    color: Color(0xffD8F3DC)),
-              ),
+                SizedBox(height: 20),
+                _buildEditableSliderCard(
+                  'Height',
+                  '${_height.toStringAsFixed(1)} cm',
+                  _height,
+                  100,
+                  220,
+                  (value) {
+                    setState(() => _height = value);
+                  },
+                  (text) {
+                    double? newValue = double.tryParse(text);
+                    if (newValue != null && newValue >= 100 && newValue <= 220) {
+                      setState(() => _height = newValue);
+                    }
+                  },
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    _buildEditableValueCard('Weight', _weight.toStringAsFixed(1),
+                        (value) {
+                      setState(
+                          () => _weight = double.tryParse(value) ?? _weight);
+                    }),
+                    _buildEditableValueCard('Age', '$_age', (value) {
+                      setState(() => _age = int.tryParse(value) ?? _age);
+                    }),
+                  ],
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _calculateBMI,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff7f5539),
+                    padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: Text(
+                    'CALCULATE',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
+                        color: Color(0xffD8F3DC)),
+                  ),
+                ),
+                SizedBox(height: 20),
+              ],
             ),
-            SizedBox(height: 20),
-          ],
+          ),
         ),
       ),
     );
@@ -134,8 +151,8 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
     );
   }
 
-  Widget _buildSliderCard(String label, String value, double sliderValue,
-      double min, double max, Function(double) onChanged) {
+  Widget _buildEditableSliderCard(String label, String value, double sliderValue,
+      double min, double max, Function(double) onChanged, Function(String) onTextChanged) {
     return Card(
       color: Color(0xFFd4a373),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
@@ -146,45 +163,10 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
           children: [
             Text(label,
                 style: TextStyle(
-                    color: Color(0xffD8F3DC),
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Poppins')),
-            SizedBox(
-              width: 100,
-              child: TextFormField(
-                initialValue: value,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                style: TextStyle(
-                    color: Color(0xffB7E4C7),
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Monsterrat'),
-                onChanged: (inputValue) {
-                  setState(() {
-                    double? parsedValue = double.tryParse(inputValue);
-                    if (parsedValue != null &&
-                        parsedValue >= min &&
-                        parsedValue <= max) {
-                      _height = parsedValue;
-                    }
-                  });
-                },
-                decoration: InputDecoration(
-                  isDense: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Color(0xffB7E4C7)),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Color(0xffD8F3DC)),
-                  ),
-                  contentPadding: EdgeInsets.all(5),
-                ),
-              ),
-            ),
             Slider(
               value: sliderValue,
               min: min,
@@ -192,6 +174,30 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
               activeColor: Color(0xfff3d0c3),
               inactiveColor: const Color.fromARGB(255, 44, 63, 45),
               onChanged: onChanged,
+            ),
+            SizedBox(
+              width: 100,
+              child: TextFormField(
+                initialValue: value,
+                textAlign: TextAlign.center,
+                keyboardType: TextInputType.number,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Poppins'),
+                onChanged: onTextChanged,
+                decoration: InputDecoration(
+                  isDense: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  contentPadding: EdgeInsets.all(5),
+                ),
+              ),
             ),
           ],
         ),
@@ -210,7 +216,7 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
           children: [
             Text(label,
                 style: TextStyle(
-                    color: Color(0xffD8F3DC),
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Poppins')),
@@ -222,7 +228,7 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.number,
                 style: TextStyle(
-                    color: Color(0xffB7E4C7),
+                    color: Color.fromARGB(255, 255, 255, 255),
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Monsterrat'),
@@ -231,11 +237,9 @@ class _BMICalculatorPageState extends State<BMICalculatorPage> {
                   isDense: true,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Color(0xffB7E4C7)),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Color(0xffD8F3DC)),
                   ),
                   contentPadding: EdgeInsets.all(5),
                 ),
@@ -294,78 +298,81 @@ class BMIResultPage extends StatelessWidget {
         elevation: 0.0,
         iconTheme: const IconThemeData(color: Color(0xFF1B4332)),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Your Result',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFd4a373)),
-              ),
-              SizedBox(height: 20),
-              Card(
-                color: Color(0xFFd4a373),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    children: [
-                      Text(
-                        result,
-                        style: TextStyle(
-                            color: resultColor,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Poppins'),
-                      ),
-                      Text(
-                        bmi.toStringAsFixed(1),
-                        style: TextStyle(
-                            color: Color(0xffD8F3DC),
-                            fontSize: 60,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Monsterrat'),
-                      ),
-                      SizedBox(height: 10),
-                      Text(
-                        message,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Color(0xffD8F3DC), fontSize: 24),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff7f5539),
-                  padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-                child: Text(
-                  'RE-CALCULATE',
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Your Result',
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xffD8F3DC)),
+                      color: Color(0xFFd4a373)),
                 ),
-              ),
-            ],
+                SizedBox(height: 20),
+                Card(
+                  color: Color(0xFFd4a373),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          result,
+                          style: TextStyle(
+                              color: resultColor,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Poppins'),
+                        ),
+                        Text(
+                          bmi.toStringAsFixed(1),
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 60,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Monsterrat'),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          message,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 255, 255, 255),
+                              fontSize: 24),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () => Navigator.pop(context),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xff7f5539),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  child: Text(
+                    'RE-CALCULATE',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 255, 255, 255)),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
