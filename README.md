@@ -1,4 +1,4 @@
-# yoga_two
+# Zenica The Yoga App
 
 A new Flutter project.
 
