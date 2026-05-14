@@ -95,4 +95,3 @@ flutter run
 
 ---
 
-*Built as part of my MSc CS portfolio — combining mobile development with applied ML.*
